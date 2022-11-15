@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<title>Anderson IC Module-Integration</title>
+ <div th:replace="fragment/Head.html::Head"></div> 
+
+
+<body class="theme-red">
+	<!-- Page Loader -->
+	<!-- <div th:replace="fragments/pageloader.html::pageloader"></div> -->
+	<!-- #END# Page Loader -->
+
+	<!-- Top Bar -->
+	<!-- <div th:replace="fragment/Header.html::Header"></div> -->
+	<!-- #Top Bar -->
+
+	<!-- Side Bar -->
+	<!-- <section class="content">
+		<div th:replace="fragment/Sidenav.html::SideNav"></div>
+	</section> -->
+	<!-- #END# Right Sidebar -->
+
+	<table class="table table-hover">
+		<tr>
+			<td><a th:href="@{/gettoken}"><button>Get Token</button></a></td>
+		</tr>
+		<tr>
+			<th>Token Access</th>
+		</tr>
+		<tr th:each="obj1 : ${tokenObj}">
+			<td th:text="${obj1.accessToken}"></td>
+		</tr>
+		<tr th:each="obj2 : ${tokenObj}">
+			<td><a th:href="'/getclient/'+${obj2.accessToken}"><button>Get
+						Client</button></a></td>
+		</tr>
+		<tr th:each="obj3 : ${tokenObj}">
+			<td><a th:href="'/getratecard/'+${obj3.accessToken}"><button>Get
+						Rate Card</button></a></td>
+		</tr>
+		<tr th:each="obj4 : ${tokenObj}">
+			<td><a th:href="'/getinvestigations/'+${obj4.accessToken}"><button>Get
+						Investigation</button></a>    <b>RateCardId</b> = "a8f8e53b-7650-11e5-b392-000c29cdc9d7"</td>
+		</tr>
+ 		<tr th:each="obj5 : ${tokenObj}">
+			<td><a th:href="'/getbill/'+${obj5.accessToken}"><button>Get
+						Bill</button></a>    <b>FromDate</b> = "20190401100000"
+											 <b>ToDate</b> = "20190426100000"
+											 <b>Mode</b> = "5"	
+			</td>
+		</tr> 
+		<tr th:each="obj6 : ${tokenObj}">
+			<td><a th:href="'/getbillwithinvest/'+${obj6.accessToken}"><button>Get
+						Bill With Invest </button></a>    <b>FromDate</b> = "20190401100000"
+											 <b>ToDate</b> = "20190426100000"
+											 <b>InvestigationList</b> = "true"
+											 <b>Mode</b> = "5"	
+			</td>
+		</tr> 	
+	</table>
+	<!-- Js File Link -->
+	<div th:replace="fragment/js.html::js"></div>
+	<!-- #END# Js File Link -->
+</body>
+
+</html>

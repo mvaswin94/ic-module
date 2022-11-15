@@ -1,0 +1,793 @@
+<html xmlns:th="https://www.thymeleaf.org" style="overflow-x: hidden;">
+<div th:replace="fragment/Head.html::Head"></div>
+<body class="theme-red ls-closed">
+
+	<div class="overlay"></div>
+
+	<div th:replace="fragment/HeaderDis.html::Header"></div>
+
+	<section>
+
+		<div th:replace="fragment/Sidenav.html::SideNav"></div>
+
+		<section class="content">
+
+			<div th:replace="fragment/SearchDispatchIc.html::DispatchIcSearch"></div>
+
+
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card" style="bottom: 2pc;">
+						<div class="header">
+							<h2>
+								<b>DISPATCH IC</b>
+							</h2>
+						</div>
+						<div class="body">
+							<div class="table-responsive">
+								<table id="example"
+									class="table table-bordered table-striped table-hover dataTable"
+									style="font-size: smaller; width: max-content">
+									<thead>
+										<tr role="row">
+											<th>S.No</th>
+											<th class="sorting_asc" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-sort="ascending"
+												aria-label="Name: activate to sort column descending">COVER
+												ID</th>
+											<th class="sorting" tabindex="4"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">CLIENT
+												ID</th>
+											<th class="sorting" tabindex="5"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">CLIENT
+												NAME</th>
+											<!-- <th class="sorting" tabindex="6"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">CLIENT
+												TYPE</th> -->
+											<th class="sorting" tabindex="7"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Salary: activate to sort column ascending">PRO
+												ID</th>
+											<th class="sorting" tabindex="9"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">PRO
+												NAME</th>
+											<th class="sorting" tabindex="16"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Start date: activate to sort column ascending">ACTION
+											</th>
+											<th class="sorting" tabindex="16"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Start date: activate to sort column ascending">VIEW
+												IC</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr role="row" th:each="obj : ${page}" class="odd">
+											<td></td>
+											<td class="sorting_1" th:text="${obj.coverId}" id="coverId" th:attr="data-coId=${obj.coverId}"></td>
+
+											<td class="sorting_1" th:text="${obj.clientId}" id="clientId" th:attr="data-cId=${obj.clientId}"></td>
+											<td class="sorting_1" th:text="${obj.clientName}" id="clientName" th:attr="data-cName=${obj.clientName}"></td>
+											<!-- <td class="sorting_1" th:text="${obj.clientType}" id="clientType" th:attr="data-cType=${obj.clientType}"></td> -->
+
+											<td class="sorting_1" th:text="${obj.proId}" id="proId" th:attr="data-pId=${obj.proId}"></td>
+											<td class="sorting_1" th:text="${obj.proName}" id="proName" th:attr="data-pName=${obj.proName}"></td>
+
+											<td><span th:if="${obj.status}==5"> <a
+													href="#approved" class="approved"
+													onclick="approvedIc(this)"><i class="material-icons"
+														data-toggle="tooltip" title="Dispatch">arrow_forward</i></a>
+											</span> <span th:if="${obj.status}==8"> <a href="#dispatched"
+													class="dispatched" onclick="dispatchedIc(this)"><i
+														class="material-icons" data-toggle="tooltip" title="Done">done</i></a>
+											</span> <span th:if="${obj.status}==8"> <a href="#returned"
+													class="returned" onclick="redispatch(this)"><i
+														class="material-icons" data-toggle="tooltip"
+														title="Re-Dispatch">refresh</i></a>
+											</span> <span th:if="${obj.status}==7"> <a href="#dispatched"
+													class="dispatched" onclick="dispatchedIc(this)"><i
+														class="material-icons" data-toggle="tooltip" title="Done">done</i></a>
+											</span> <span th:if="${obj.status}==7"> <a href="#return"
+													class="return" onclick="returnIc(this)"><i
+														class="material-icons" data-toggle="tooltip"
+														title="Return">arrow_backward</i></a>
+											</span></td>
+
+											<td><span> <a href="#cover" class="cover"
+													onclick="cover(this)"> <i class="material-icons"
+														data-toggle="tooltip" title="Info">info</i>
+												</a>
+											</span></td>
+
+										</tr>
+
+									</tbody>
+								</table>
+
+								<!-- ---------------------------------COVER IC---------------------------------------------------------------------- -->
+
+								<div id="cover" class="modal fade" style="overflow: hidden;">
+									<div class="modal-dialog modal-mdeium">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title">IC LIST</h4>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">&times;</button>
+											</div>
+											<div class="modal-body">
+
+															 <!-- <label>Cover ID:</label> <input type="text"
+																th:name="coverId" id="icoId" class="form-control"
+																style="font-weight: bolder; width: 80px;" readonly> -->
+																
+																
+												<div class="body">
+													<div class="table-responsive">
+														<table id="exampleCover"
+															class="table table-bordered table-striped table-hover dataTable"
+															style="font-size: smaller; width: max-content">
+															<thead>
+																<tr role="row">
+																	<!-- <th>S.No</th> -->
+																    <th>COVER ID</th>
+																	<th>IC ID</th>
+																	<th>CLIENT ID</th>
+																	<th>CLIENT NAME</th>
+																	<th>PRO ID</th>
+																	<th>PRO NAME</th>
+																	<th>IC AMOUNT</th>
+
+																</tr>
+															</thead>
+															<tbody>
+															</tbody>
+														</table>
+														<div>
+														<h4>
+												<label style="position: absolute; right: 18pc">Total IC Amount</label>
+												<input id="CoverTotalIcAmount" type=text value="0"
+												style="width: 100px; position: absolute; right: 11pc" class="integerInput" readonly/>
+											</h4></div>
+													</div>
+													<br><br><br>	
+													<div class="table-responsive">
+													<table id="denomination"
+															class="table table-bordered table-striped table-hover dataTable"
+															style="font-size: smaller; width: max-content">
+															<thead>
+																<tr role="row">
+																	<th>2000</th> <th>500</th> <th>200</th> <th>100</th> <th>50</th>
+																	<th>20</th> <th>10</th> <th>5</th> <th>2</th> <th>1</th>
+																</tr>
+															</thead>
+															<tbody>
+															<tr>
+															<td hidden></td>  <!-- Hidden for SL.No Javascript -->
+															 <td></td> <td></td> <td></td> <td></td> <td></td>
+															<td></td> <td></td> <td></td> <td></td> <td></td> 
+															</tr>
+															</tbody>
+														</table>
+														<!-- <span>5</span> -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- --------------------------------*COVER IC*---------------------------------------------------------------------- -->
+								<!-- --------------------------------DISPATCH IC---------------------------------------------------------------------- -->
+
+								<div id="approved" class="modal fade" style="overflow: hidden;">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<form th:action="@{/ic/dispatch/send}" method="POST">
+												<div class="modal-header">
+													<h4 class="modal-title">Dispatch IC</h4>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-hidden="true">&times;</button>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+
+																<label>Cover Id:</label> <input type="text"
+																	th:name="coverId" id="coId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>Client Name:</label> <input type="text"
+																	th:name="clientName" id="clName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+													</div>
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO ID:</label> <input type="text"
+																	th:name="proId" id="pId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO Name:</label> <input type="text"
+																	th:name="proName" id="pName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+
+														<div class="col-md-4">
+															<div class="input-daterange input-group"
+																th:name="deleveryDate" data-provide="datepicker">
+																<div class="form-line">
+																	<label>Date of Return:</label> <input type="text"
+																		name="toDate" id="toDate" class="form-control"
+																		autocomplete="off" required>
+																</div>
+															</div>
+														</div>
+													</div>
+
+
+												</div>
+												<div class="modal-footer">
+													<input type="button" class="btn btn-default"
+														data-dismiss="modal" value="Cancel"> <input
+														type="submit" class="btn btn-info" value="Save">
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+
+
+
+								<!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+								<!-- --------------------------------DISPATCHED IC DONE/SUCCESS---------------------------------------------------------------------- -->
+
+								<div id="dispatched" class="modal fade"
+									style="overflow: hidden;">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<form th:action="@{/ic/dispatch/success}" method="POST">
+												<div class="modal-header">
+													<h4 class="modal-title">Dispatch IC Successful</h4>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-hidden="true">&times;</button>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+
+																<label>Cover Id:</label> <input type="text"
+																	th:name="coverId" id="scoId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>Client Name:</label> <input type="text"
+																	th:name="clientName" id="sclName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO ID:</label> <input type="text"
+																	th:name="proId" id="spId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO Name:</label> <input type="text"
+																	th:name="proName" id="spName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+													</div>
+
+												</div>
+												<div class="modal-footer">
+													<input type="button" class="btn btn-default"
+														data-dismiss="modal" value="Cancel"> <input
+														type="submit" class="btn btn-info" value="Save">
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- ------------------------------------------------------------------------------------------------------ -->
+								<!-- ------------------------------------------RETURN IC--------------------------------------------------- -->
+
+								<div id="return" class="modal fade" style="overflow: hidden;">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<form th:action="@{/ic/dispatch/return}" method="POST">
+												<div class="modal-header">
+													<h4 class="modal-title">Return IC</h4>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-hidden="true">&times;</button>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+
+																<label>Cover Id:</label> <input type="text"
+																	th:name="coverId" id="rcoId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>Client Name:</label> <input type="text"
+																	th:name="clientName" id="rclName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+													</div>
+
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO ID:</label> <input type="text"
+																	th:name="proId" id="rpId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO Name:</label> <input type="text"
+																	th:name="proName" id="rpName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+														<div class="col-md-4">
+															<div class="input-daterange input-group"
+																th:name="deleveryDate" data-provide="datepicker">
+																<div class="form-line">
+																	<label>Date of Return:</label> <input type="text"
+																		name="toDate" id="toDate" class="form-control"
+																		autocomplete="off" required>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label for="comment">Remarks:</label>
+																<textarea th:name="reason" class="form-control" rows="5"
+																	id="comment"
+																	style="max-width: 100%; margin: 0px; height: 34px; width: 500px;"
+																	placeholder="Type Remarks..."></textarea>
+															</div>
+
+														</div>
+													</div>
+
+
+												</div>
+												<div class="modal-footer">
+													<input type="button" class="btn btn-default"
+														data-dismiss="modal" value="Cancel"> <input
+														type="submit" class="btn btn-info" value="Save">
+												</div>
+											</form>
+										</div>
+
+									</div>
+
+
+
+									<!-- ------------------------------------------------------------------------------------------------------ -->
+									<!-- -----------------------------------------RE_DISPATCH IC----------------------------------------------- -->
+
+									<div id="redispatch" class="modal fade"
+										style="overflow: hidden;">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form th:action="@{/ic/dispatch/redispatch}" method="POST">
+													<div class="modal-header">
+														<h4 class="modal-title">Re-Dispatch IC</h4>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">&times;</button>
+													</div>
+													<div class="modal-body">
+
+														<div class="col-md-4">
+															<div class="form-group">
+
+																<label>Cover Id:</label> <input type="text"
+																	th:name="coverId" id="rdcoId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>Client Name:</label> <input type="text"
+																	th:name="clientName" id="rdclName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>Date of Re-Dispatch:</label> <input type="date"
+																	th:name="date" id="date" class="form-control"
+																	autocomplete="off" required>
+															</div>
+														</div>
+
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO Name:</label> <input type="text"
+																	th:name="proName" id="rdpName" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+														<div class="col-md-4">
+															<div class="form-group">
+																<label>PRO ID:</label> <input type="text"
+																	th:name="proId" id="rdpId" class="form-control"
+																	style="font-weight: bolder;" readonly>
+															</div>
+														</div>
+
+
+
+
+													</div>
+													<div class="modal-footer" style="top: 4pc; right: 2pc;">
+														<input type="button" class="btn btn-default"
+															data-dismiss="modal" value="Cancel"> <input
+															type="submit" class="btn btn-info" value="Save">
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- ------------------------------------------------------------------------------------------------------ -->
+								<!-- ------------------------------------------------------------------------------------------------------ -->
+							</div>
+							<!-- -----------------------------------------------------Pagination---------------------------------------------------------------------------- -->
+							<div class="col-sd-6">
+								<div class="box box-success box-solid">
+
+									<div class="box-body">
+										<div class="col-sd-6">
+
+											<div class="pagination-div">
+
+												<a
+													th:href="@{/ic/dispatch(page=${page.number-1},size=${page.size})}">
+													<button type="button"
+														class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+														th:if="${page.hasPrevious()}">
+														<i class="material-icons" data-toggle="tooltip"
+															title="Previous">skip_previous</i>
+													</button>
+												</a>
+												<th:block th:each="i: ${#numbers.sequence(0, page.number)}">
+													<span th:if="${page.number == i}" class="selected"
+														style="color: orange; font-weight: bold">[[${i}+1]]</span>
+													<span th:unless="${page.number == i}" class="selected"
+														style="color: orange; font-weight: bold"> <a
+														th:href="@{/ic/dispatch(page=${i},size=${page.size})}">[[${i}+1]]</a>
+													</span>
+												</th:block>
+
+												<a
+													th:href="@{/ic/dispatch(page=${page.number+1},size=${page.size})}">
+													<button type="button"
+														class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+														th:if="${page.hasNext()}">
+														<i class="material-icons" data-toggle="tooltip"
+															title="Next">skip_next</i>
+													</button>
+												</a>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- -----------------------------------------------------*Pagination*---------------------------------------------------------------------------- -->
+						</div>
+					</div>
+				</div>
+		</section>
+	</section>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+	<!--  Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+	<!--      Bootstrap Datepicker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<!-- noUISlider Plugin Js -->
+	<script src="/plugins/nouislider/nouislider.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+	<!-- Custom Js -->
+	<script src="/js/admin.js"></script>
+	<script src="/js/pages/tables/jquery-datatable.js"></script>
+
+	<!--  Demo Js -->
+	<script src="/js/demo.js"></script>
+
+
+
+	<!-- -----------------------------------------------------Dispatch IC (Approve IC/ Return IC/ Dispatched IC/ Re-Dispatched IC)--------------------------------------------------- -->
+	<script>
+		function approvedIc(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var one = $(row).find('td[data-coid]').data('coid');
+			var two = $(row).find('td[data-cid]').data('cid');
+			var three = $(row).find('td[data-cname]').data('cname');
+			var four = $(row).find('td[data-prid]').data('prid');
+			var five = $(row).find('td[data-prname]').data('prname');
+
+			var b = $('#coId').val(one);
+			var b = $('#clId').val(two);
+			var b = $('#clName').val(three);
+			var b = $('#pId').val(four);
+			var b = $('#pName').val(five);
+			$('#approved').modal('show');
+		}
+		function returnIc(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var one = $(row).find('td[data-coid]').data('coid');
+			var two = $(row).find('td[data-cid]').data('cid');
+			var three = $(row).find('td[data-cname]').data('cname');
+			var four = $(row).find('td[data-prid]').data('prid');
+			var five = $(row).find('td[data-prname]').data('prname');
+
+			var b = $('#rcoId').val(one);
+			var b = $('#rclId').val(two);
+			var b = $('#rclName').val(three);
+			var b = $('#rpId').val(four);
+			var b = $('#rpName').val(five);
+			$('#return').modal('show');
+
+		}
+		function dispatchedIc(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var one = $(row).find('td[data-coid]').data('coid');
+			var two = $(row).find('td[data-cid]').data('cid');
+			var three = $(row).find('td[data-cname]').data('cname');
+			var four = $(row).find('td[data-prid]').data('prid');
+			var five = $(row).find('td[data-prname]').data('prname');
+
+			var b = $('#scoId').val(one);
+			var b = $('#sclId').val(two);
+			var b = $('#sclName').val(three);
+			var b = $('#spId').val(four);
+			var b = $('#spName').val(five);
+			$('#dispatched').modal('show');
+
+		}
+
+		function redispatch(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var one = $(row).find('td[data-coid]').data('coid');
+			var two = $(row).find('td[data-cid]').data('cid');
+			var three = $(row).find('td[data-cname]').data('cname');
+			var four = $(row).find('td[data-prid]').data('prid');
+			var five = $(row).find('td[data-prname]').data('prname');
+
+			var b = $('#rdcoId').val(one);
+			var b = $('#rdclId').val(two);
+			var b = $('#rdclName').val(three);
+			var b = $('#rdpId').val(four);
+			var b = $('#rdpName').val(five);
+			$('#redispatch').modal('show');
+
+		}
+	</script>
+
+	<!-- -----------------------------------------------------*Dispatch IC (Approve IC/ Return IC/ Dispatched IC/ Re-Dispatched IC)*---------------------------------------------------------------------------- -->
+
+	<!-- 	<style>
+.modal-header .close {
+	margin-top: -2px;
+	position: relative;
+	bottom: 20px;
+}
+
+.modal .modal-footer {
+	border: none;
+	position: relative;
+}
+</style> -->
+
+	<!-- <script type="text/javascript">
+		$(".form_datetime").datetimepicker({
+			format : "dd-mm-yyyy - hh:ii"
+		}); 
+	</script> -->
+	<!-- 	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="fromDate"]'); //our date input has the name "date"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					var options = {
+						format : 'dd-mm-yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					};
+					date_input.datepicker("setDate", "0");
+				})
+
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="toDate"]'); //our date input has the name "date"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					var options = {
+						format : 'dd-mm-yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					};
+					date_input.datepicker("setDate", "0");
+				})
+	</script> -->
+
+
+	<!-- -----------------------------------------------------Cover IC Popup---------------------------------------------------------------------------- -->
+	<script type="text/javascript">
+		function cover(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var one = $(row).find('td[data-coid]').data('coid');
+			var entity = $('#icoId').val(one);
+
+			$.ajax({
+				type : "GET",
+				 url: '/ic/cover/'+one,
+				//url : '/ic/cover/3',
+				dataType : "json",
+				cache : false,
+				
+				  success: function( data, textStatus, jQxhr ){
+			          
+					 	var result = 0; 
+			            var trs = "";
+			                 data.forEach(function(v){
+			                 trs +=`<tr>
+			                	 <td class='.text-right'>${showEmptyOnNull (v.coverId)}</td> 
+				                 <td class='.text-right'>${showEmptyOnNull(v.icId)}</td>
+				                 
+				                 <td class='.text-right'>${showEmptyOnNull(v.clientId)}</td>
+				                 <td class='.text-right'>${showEmptyOnNull(v.clientName)}</td> 
+				                 <td class='.text-right'>${showEmptyOnNull(v.proId)}</td> 
+				                 <td class='.text-right'>${showEmptyOnNull(v.proName)}</td> 
+				                 <td class='.text-right'>${showEmptyOnNull(v.approvedAmount)}</td>
+			                 </tr>`;
+			                 
+			                 result += Math.floor(v.approvedAmount);
+			                 
+			                 });
+			                 var data = result +".00";  
+			                 document.getElementById("CoverTotalIcAmount").value = data;
+			           
+			                 $('#exampleCover tbody').html(trs);
+			                 
+			                 
+			                 
+			                 //var total = data;
+			             	function makeChange(data) {
+			                 var amtArray = [2000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+
+			                 $("span").each(function(i) {
+			                     var currentText = $(this).text();
+			                     
+			                         $(this).text(currentText + parseInt(data / amtArray[i]));
+			                        
+			                         data = data % amtArray[i];
+			                 });
+			                 
+			             	}
+			             }
+			});
+			$('#cover').modal('show');
+
+		}
+		
+		function showEmptyOnNull(value){
+			if(value == null){
+			return "";
+			} else{
+			return value;
+			}
+		}
+	</script>
+
+	<!-- -----------------------------------------------------*Cover IC Popup*---------------------------------------------------------------------------- -->
+
+ <script type="text/javascript">
+
+function deno {
+	 
+	/* var total = document.getElementById('CoverTotalIcAmount').value;
+	
+    var amtArray = [2000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+
+    $("span").each(function(i) {
+        var currentText = $(this).text();
+        
+            $(this).text(currentText + parseInt(total / amtArray[i]));
+           
+            total = total % amtArray[i];
+    }); */
+}
+</script> 
+
+</body>
+</html>

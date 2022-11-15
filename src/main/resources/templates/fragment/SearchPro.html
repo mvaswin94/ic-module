@@ -1,0 +1,89 @@
+
+<search th:fragment="ProSearch">
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="card filter-card"
+			style="background-color: #0367A6; bottom: 1pc;">
+			<div class="body">
+				<div class="row clearfix">
+					<!-- <form method="POST" action="/master/pro"> -->
+					<div class="row" style="color: #f5f5f5;">
+						<div class="col-sm-3">
+							<label>PRO</label> <select class="form-control" id="selectPro"
+								name="pro" multiple>
+								<option></option>
+
+							</select>
+							 <script>
+								$('#selectPro')
+										.select2(
+												{
+													ajax : {
+														delay : 300,
+														url : function(params) {
+															var searchTerms = params.term;
+															var ajaxURlPro = "/autocomplete/pro/"
+																	+ searchTerms
+																	+ "/";
+															console
+																	.log(ajaxURlPro);
+															return ajaxURlPro;
+														},
+														dataType : 'json',
+
+														data : function(params) {
+															return {
+																q : params.term, // search term
+																page : params.page,
+															};
+														},
+														processResults : function(
+																data, page) {
+															var results = [];
+
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					item) {
+																				results
+																						.push({
+																							id : item.pro_id,
+																							text : item.pro_name
+																						});
+																			});
+
+															return {
+																results : results
+															};
+
+															//console.log(results)
+
+														},
+														cache : false
+													},
+													minimumInputLength : 1
+												});
+							</script> 
+						</div>
+
+						<div class="col-sm-11">
+							<a href="#">
+								<button type="submit"
+									class="btn bg-orange waves-effect order pull-right "
+									style="border-radius: 4px; top: 2pc; left: 4pc;">
+									<i class="material-icons">search</i><span>Search</span>
+								</button>
+							</a>
+						</div>
+
+					</div>
+					<!-- </form> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</search>

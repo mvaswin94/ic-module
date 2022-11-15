@@ -1,0 +1,291 @@
+<html xmlns:th="https://www.thymeleaf.org" style="overflow-x: hidden;">
+<div th:replace="fragment/Head.html::Head"></div>
+<body class="theme-red ls-closed">
+
+	<div th:replace="fragment/Header.html::Header"></div>
+
+	<section>
+
+		<div th:replace="fragment/Sidenav.html::SideNav"></div>
+		<section class="content">
+
+			<div th:replace="fragment/SearchUser.html::UserSearch"></div>
+
+
+			<form th:action="@{/master/user/add}" th:object="${userObj}" method="POST">
+				<div class="modal fade" id="myModal" role="dialog">
+
+
+					<div class="modal-dialog">
+
+						<div class="modal-content">
+
+							<div class="modal-header text-center">
+
+
+								<b>Add User</b>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+
+								</button>
+							</div>
+
+
+							<div class="container">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="input-group">
+											<span class="input-group-addon"> <i
+												class="material-icons">person</i>
+											</span>
+											<div class="form-line">
+												<input type="text" class="form-control "
+													th:field="*{userName}" placeholder="Username">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="input-group">
+											<span class="input-group-addon"> <i
+												class="material-icons">phone</i>
+											</span>
+											<div class="form-line">
+												<input type="text" class="form-control "
+													th:field="*{contactNumber}" placeholder="Contact number">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+                                       
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">email</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text"th:field="*{emailAddress}"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"class="form-control email" placeholder="Ex: example@example.com">
+                                            </div>
+                                        </div>
+                                    </div>
+						<!-- 			<div class="col-sm-3" style="left: 6px;">
+										<label> <span class=""> <i
+												class="material-icons">account_circle</i>
+										</span></label> <select class="form-control "
+											style="position: absolute; left: 45px; width: 14pc; top: 0pc;"
+											th:field="*{role}" required="required">
+											<option value="">--Select Role--</option>
+											<option th:value="'Ic Team'" th:text="IC"></option>
+											<option th:value="'Approval Team'" th:text="Approval"></option>
+											<option th:value="'Financial Team'" th:text="Financial"></option>
+										</select>
+									</div> -->
+
+								<div class="col-md-3">
+                                   <div class="input-group">
+                                       <span class="input-group-addon">
+                                                <i class="material-icons">account_circle</i>
+                                            </span>
+                                            <div class="form-line">
+                                    <select class="form-control show-tick"th:field="*{role}" required="required" >
+                                       <option value="">--Select Role--</option>
+											<option th:value="'IC Team '" >IC Team</option>
+											<option th:value="'Approval Team  '" >Approve Team</option>
+											<option th:value="'Financial Team '" >Financial Team</option>
+                                    </select>
+									</div>
+                                </div>
+							</div>
+
+
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<div class="container">
+
+									<div class="row">
+
+
+										<div class='col-sm-3'>
+
+											<button type="Submit"
+												class="btn btn-info3 btn-success waves-effect pull-right"
+												style="left: 17pc;">Submit</button>
+											<button type="button"
+												class="btn btn-info3 btn-danger waves-effect pull-right"
+												onclick="window.location.reload()"
+												style="border-radius: 0%; left: 15pc;">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+			</form>
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card"style="bottom:3pc;">
+						<div class="header">
+							<h2>
+								<b>User Master</b>
+							</h2>
+						
+					<div class="col-sm-11">
+							<a href="#" class="small-box-footer" data-toggle="modal"
+								data-target="#myModal">
+								<button type="button" class="btn bg-deep-purple btn-circle waves-effect waves-circle waves-float pull-right"style="bottom:2pc;left: 5pc;">
+                                    <i class="material-icons">account_circle</i>
+                                </button>
+							</a>
+					</div>
+					
+						</div>
+						<div class="body">
+							<div class="table-responsive">
+								<table
+									class="table table-bordered table-striped table-hover dataTable">
+									<thead>
+										<tr>
+										<th>S.No</th>
+											<th>Id</th>
+											<th>Name</th>
+											<th>Contact Number</th>
+											<th>Email Address</th>
+											<th>Role</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr role="row" th:each="user : ${page}" class="odd">
+										<td></td>
+											<td class="sorting_1" th:text="${user.userId}"></td>
+											<td class="sorting_1" th:text="${user.userName}"></td>
+											<td class="sorting_1" th:text="${user.contactNumber}"></td>
+											<td class="sorting_1" th:text="${user.emailAddress}"></td>
+											<td class="sorting_1" th:text="${user.role}"></td>
+
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+							<!-- -----------------------------------------------------Pagination---------------------------------------------------------------------------- -->
+								<div class="col-sd-6">
+									<div class="box box-success box-solid">
+
+										<div class="box-body">
+											<div class="col-sd-6">
+
+												<div class="pagination-div">
+
+													<a
+														th:href="@{/master/user(page=${page.number-1},size=${page.size})}">
+														<button type="button"
+															class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+															th:if="${page.hasPrevious()}">
+															<i class="material-icons" data-toggle="tooltip" title="Previous">skip_previous</i>
+														</button>
+													</a>
+													<th:block th:each="i: ${#numbers.sequence(0, page.number)}">
+														<span th:if="${page.number == i}" class="selected"  style="color:orange;font-weight:bold">[[${i}+1]]</span>
+														<span th:unless="${page.number == i}" class="selected" style="color:orange;font-weight:bold">
+															<a
+															th:href="@{/master/user(page=${i},size=${page.size})}">[[${i}+1]]</a>
+														</span>
+													</th:block>
+
+													<a
+														th:href="@{/master/user(page=${page.number+1},size=${page.size})}">
+														<button type="button"
+															class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+															th:if="${page.hasNext()}">
+															<i class="material-icons" data-toggle="tooltip" title="Next">skip_next</i>
+														</button>
+													</a>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<!-- -----------------------------------------------------*Pagination*---------------------------------------------------------------------------- -->
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+
+		</section>
+
+
+	</section>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+	<!--   Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+	<!--      Bootstrap Datepicker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<!-- noUISlider Plugin Js -->
+	<script src="/plugins/nouislider/nouislider.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+
+	<!--  Custom Js -->
+	<script src="/js/admin.js"></script>
+	<script src="/js/pages/tables/jquery-datatable.js"></script>
+
+	<!--  Demo Js -->
+	<script src="/js/demo.js"></script>
+
+	<style>
+.card .body {
+	font-size: 14px;
+	padding: 30px;
+}
+}
+
+
+
+</style>
+
+
+</body>
+</html>

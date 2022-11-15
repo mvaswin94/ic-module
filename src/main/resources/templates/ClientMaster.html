@@ -1,0 +1,680 @@
+<html xmlns:th="https://www.thymeleaf.org" style="overflow-x: hidden;">
+<div th:replace="fragment/Head.html::Head"></div>
+<body class="theme-red ls-closed">
+
+	<div class="overlay"></div>
+
+	<div th:replace="fragment/Header.html::Header"></div>
+
+	<section>
+
+		<div th:replace="fragment/Sidenav.html::SideNav"></div>
+		<section class="content">
+
+			<div th:replace="fragment/SearchClient.html::ClientSearch"></div>
+
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card" style="bottom: 2pc;">
+						<div class="header">
+							<h2>
+								<b>Client Master</b>
+							</h2>
+
+
+						</div>
+						<div class="body">
+							<div class="table-responsive">
+								<table id="example"
+									class="table table-bordered table-striped table-hover dataTable"
+									style="font-size: smaller; width: max-content">
+									<thead>
+										<tr role="row">
+											<th>S.No</th>
+											<th class="sorting_asc" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-sort="ascending"
+												aria-label="ClientId: activate to sort column descending">ID
+											</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="ClientName: activate to sort column ascending">Name
+											</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="ClientType: activate to sort column ascending">Client
+												Type</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Qualification: activate to sort column ascending">Qualification
+											</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Hospital: activate to sort column ascending">Hospital
+											</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="MobileNo: activate to sort column ascending">Mobile
+												No.</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="PRO: activate to sort column ascending">PRO
+											</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Specialization: activate to sort column ascending">Specialization
+											</th>
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Email: activate to sort column ascending">Email
+											</th>
+											 <!-- <th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentID: activate to sort column ascending">Tenent
+												ID</th> 
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">Tenent
+												Name</th> -->
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">Engagement
+												Model</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">Location
+											</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">IC
+											</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">IC
+												Type</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">Payment
+												Mode</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">Cycle
+												Days</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">SMS
+											</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">Agency
+											</th>
+											
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="TenentName: activate to sort column ascending">Percentage
+											</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="EffectiveFrom: activate to sort column ascending">Effective
+												From</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="EffectiveTo: activate to sort column ascending">Effective
+												To</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Status: activate to sort column ascending">Status
+											</th>
+
+											<th class="sorting" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Action: activate to sort column ascending">Action
+											</th>
+										</tr>
+									</thead>
+
+
+
+									<tbody>
+
+										<tr id=display role="row" th:each="client : ${page}"
+											class="odd">
+											<td></td>
+											<td class="sorting_1" th:text="${client.clientId}"
+												th:attr="data-cid=${client.clientId}"></td>
+											<td class="sorting_1" th:text="${client.clientName}"
+												th:attr="data-cname=${client.clientName}"></td> 
+											<td class="sorting_1" th:text="${client.clientType}"
+												th:attr="data-ctype=${client.clientType}"></td>
+											<td class="sorting_1" th:text="${client.qualification}"></td>
+											<td class="sorting_1" th:text="${client.hospital}"></td>
+											<td class="sorting_1" th:text="${client.mobileNo}"></td>
+											<td class="sorting_1" th:text="${client.pro}"></td>
+											<td class="sorting_1" th:text="${client.specialization}"></td>
+											<td class="sorting_1" th:text="${client.email}"></td>
+										    <!-- <td class="sorting_1" th:text="${client.tenentId}"></td> 
+											<td class="sorting_1" th:text="${client.tenentName}"></td> -->
+											<td class="sorting_1" th:text="${client.enagementModel}"></td>
+											<td class="sorting_1" th:text="${client.location}"></td>
+											<td class="sorting_1" th:text="${client.ic}"></td>
+											<td class="sorting_1" th:text="${client.icType}"></td>
+											<td class="sorting_1" th:text="${client.paymentMode}"></td>
+											<td class="sorting_1" th:text="${client.cycleDays}"></td>
+											<td class="sorting_1" th:text="${client.sms}"></td>
+											<td class="sorting_1" th:text="${client.agency}"></td>
+											<td class="sorting_1" th:text="${client.percentage}"></td>
+											<td class="sorting_1" th:text="${client.effectiveFrom}"></td>
+											<td class="sorting_1" th:text="${client.effectiveTo}"></td>
+
+											<td class="sorting_1" ><span th:if="${client.status}==2">Deactive</span>
+												<span th:if="${client.status}==0">No Status</span> <span
+												th:if="${client.status}==1">Active</span></td>
+											<!-- <td>
+											<span th:if="${client.status}==0" class="label label-danger">De-Active</span> 
+											<span th:if="${client.status}==1" class="label label-success">Active</span></td> -->
+
+											<td class="sorting_1"><span> <a
+													href="#editClient" class="edit" onclick="editUser(this)"><i
+														class="material-icons" data-toggle="tooltip"
+														title="Add Info">&#xE254;</i></a>
+											</span> <span th:if="${client.status}==0"> <a href="#active"
+													class="active" onclick="activeUser(this)"><i
+														class="material-icons" data-toggle="tooltip"
+														title="Active">visibility</i></a>
+											</span> <span th:if="${client.status}==0"> <a
+													href="#deactive" class="deactive"
+													onclick="deactiveUser(this)"><i class="material-icons"
+														data-toggle="tooltip" title="De-active">visibility_off</i></a>
+											</span> <span th:if="${client.status}==2"> <a href="#active"
+													class="active" onclick="activeUser(this)"><i
+														class="material-icons" data-toggle="tooltip"
+														title="Active">visibility</i></a>
+											</span> <span th:if="${client.status}==1"> <a
+													href="#deactive" class="deactive"
+													onclick="deactiveUser(this)"><i class="material-icons"
+														data-toggle="tooltip" title="De-active">visibility_off</i></a>
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+
+
+								<form id="edit" th:action="@{/master/client/info}" method="POST">
+									<div class="modal fade" id="editClient" tabindex="-1"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content"
+												style="width: 50pc; right: 2pc; height: 34pc;">
+												<div class="modal-header">
+													<h4 class="modal-title" id="defaultModalLabel">Add
+														Details</h4>
+												</div>
+												<div class="modal-body">
+
+													<div class="row clearfix">
+
+														<div class="col-sm-3">
+															<label>Client ID</label>
+															 <input type="text"
+																th:name="clientId" id="editCode" class="form-control"
+																readonly>
+
+														 </div>
+
+														<div class="col-sm-3">
+															<label>Client Name</label> <input type="text"
+																th:name="clientName" id="editName" class="form-control"
+																readonly>
+																
+														</div>
+														
+														<div class="col-sm-3">
+																<label>Client Type</label>
+																<input type="text" th:name="clientType" id="editType"  class="form-control"
+																readonly> 
+															</div>
+																
+														</div>
+														
+														<div class="row clearfix">	
+														<div class="col-sm-3">
+															<label>Engagement Model</label> <select
+																th:name="enagementModel" class="form-control"
+																autocomplete="off" required>
+																<option value="">-- Select --</option>
+																<option>DR</option>
+																<option>RVS</option>
+																<option>Franchise</option>
+																<option>Corporate</option>
+															</select>
+														</div>
+
+
+														<div class="col-sm-3">
+															<label>Location</label> <input type="text"
+																th:name="location" class="form-control"
+																autocomplete="off" required>
+
+														</div>
+
+															<div class="col-sm-3">
+																<label>IC</label> <select th:name="ic"
+																	class="form-control" autocomplete="off" required>
+																	<option value="">-- Select --</option>
+																	<option>Yes</option>
+																	<option>No</option>
+
+																</select>
+															</div>
+
+															<div class="col-sm-3">
+																<label>IC Type</label> <select th:name="icType"
+																	class="form-control" autocomplete="off" required>
+																	<option value="">-- Select --</option>
+																	<option>Value based</option>
+																	<option>Percentage</option>
+																	<option>Fixed Amount</option>
+																</select>
+															</div>
+															</div>
+
+															<div class="row clearfix">	
+															<div class="col-sm-3">
+																<label>Payment Mode</label> <select
+																	th:name="paymentMode" class="form-control"
+																	autocomplete="off" required>
+																	<option value="">-- Select --</option>
+																	<option>Cash IC</option>
+																	<option>Cheque IC</option>
+																</select>
+
+															</div>
+
+															<div class="col-sm-3">
+																<label>Cycle Days</label> <input type="text"
+																	th:name="cycleDays" class="form-control"
+																	autocomplete="off" required>
+
+															</div>
+															
+															<div class="col-sm-3">
+																<label>SMS</label> <select th:name="sms"
+																	class="form-control" autocomplete="off" required>
+																	<option value="">-- Select --</option>
+																	<option>Yes</option>
+																	<option>No</option>
+																</select>
+
+															</div>
+
+															<div class="col-sm-3">
+																<label>Agency</label> <input type="text"
+																	th:name="agency" class="form-control"
+																	autocomplete="off" required>
+
+															</div>
+															
+															</div>
+															
+															<div class="row clearfix">	
+															
+															<div class="col-sm-3">
+
+																<label>Revenue Sharing Percentage</label> <input type="text"
+																	th:name="percentage" class="form-control" 
+																	autocomplete="off" id="percentage" onkeyup="disableField(this.value)"/>
+															</div>
+															
+														</div>
+</div>
+
+														<div class="modal-footer"
+															style="top: 3pc; position: relative;">
+															<button type="submit" class="btn btn-success">Submit</button>
+															<button type="button" class="btn btn-danger"
+																data-dismiss="modal">Cancel</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</form>
+
+								<!-- ------------------------------------------------------------------------------------------------------------------------------------------ -->
+
+								<div id="active" class="modal fade">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<form th:action="@{/master/client/active}" method="POST">
+												<div class="modal-header" style="margin-top: -15px;">
+													<h4 class="modal-title">Active Client</h4>
+
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<div class="form-line">
+																	<label>Client ID</label> <input type="text"
+																		th:name="clientId" id="clientId"
+																		style="font-weight: bolder;" class="form-control"
+																		readonly>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<div class="form-line" style="width: 20pc;">
+																	<label>Client Name</label> <input type="text"
+																		th:name="clientName" id="clientName"
+																		style="width: 20pc; font-weight: bolder;"
+																		class="form-control" readonly>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- <div class="row">
+							<div class="col-sm-5" >
+												<label>Effective Date</label> <br>
+												<div class="input-daterange input-group" name="deleveryDate"
+													id="date"data-provide="datepicker">
+													<div class="form-line">
+														<input type="text" class="form-control"
+															placeholder="From Date" th:name="fromDate" id="fromDate"
+															autocomplete="off">
+													</div>
+													<span class="input-group-addon">to</span>
+													<div class="form-line">
+														<input type="text" class="form-control"
+															placeholder="To Date" th:name="toDate" id="toDate" 
+															autocomplete="off">
+													</div>
+												</div>
+											</div>
+							</div> -->
+													<div class="modal-footer">
+														<input type="button" class="btn btn-default"
+															data-dismiss="modal" value="Cancel"> <input
+															type="submit" class="btn btn-info" value="Save">
+													</div>
+												</div>
+											</form>
+
+										</div>
+
+									</div>
+
+								</div>
+
+
+								<!-- --------------------------------------------------DE-ACTIVATE CLIENT----------------------------------------------------------------------- -->
+
+
+								<div id="deactive" class="modal fade">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<form id="deactive" th:action="@{/master/client/deactive}"
+												method="POST">
+												<div class="modal-header">
+													<h4 class="modal-title">De-active Client</h4>
+												</div>
+												<div class="modal-body">
+
+
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<div class="form-line">
+
+																	<label>Client ID</label> <input type="text"
+																		th:name="clientId" id="cid" class="form-control"
+																		style="font-weight: bolder;" readonly>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<div class="form-line" style="width: 20pc;">
+
+																	<label>Client Name</label> <input type="text"
+																		th:name="clientName" id="cname"
+																		style="width: 20pc; font-weight: bolder;"
+																		class="form-control" readonly>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<!-- <div class="row">
+							<div class="col-sm-5" >
+												<label>Effective Date</label> <br>
+												<div class="input-daterange input-group" name="deleveryDate"
+													data-provide="datepicker" id="date">
+													<div class="form-line">
+														<input type="text" class="form-control"
+															placeholder="From Date"name="fromDate" id="fromDate"
+															autocomplete="off" >
+													</div>
+													<span class="input-group-addon">to</span>
+													<div class="form-line">
+														<input type="text" class="form-control"
+															placeholder="To Date"name="toDate" id="toDate" 
+															autocomplete="off" >
+													</div>
+												</div>
+											</div>
+							</div> -->
+													<div class="modal-footer">
+														<input type="button" class="btn btn-default"
+															data-dismiss="modal" value="Cancel"> <input
+															type="submit" class="btn btn-info" value="Save">
+													</div>
+												</div>
+											</form>
+
+										</div>
+
+									</div>
+								</div>
+
+								<!-- --------------------------------------------------*DE-ACTIVATE CLIENT*----------------------------------------------------------------------- -->
+								<!-- -----------------------------------------------------Pagination---------------------------------------------------------------------------- -->
+								<div class="col-sd-6">
+									<div class="box box-success box-solid">
+
+										<div class="box-body">
+											<div class="col-sd-6">
+
+												<div class="pagination-div">
+
+													<a
+														th:href="@{/master/client(page=${page.number-1},size=${page.size})}">
+														<button type="button"
+															class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+															th:if="${page.hasPrevious()}">
+															<i class="material-icons">skip_previous</i>
+														</button>
+													</a>
+													<th:block th:each="i: ${#numbers.sequence(0, page.number)}">
+														<span th:if="${page.number == i}" class="selected"  style="color:orange;font-weight:bold">[[${i}+1]]</span>
+														<span th:unless="${page.number == i}" class="selected" style="color:orange;font-weight:bold">
+															<a
+															th:href="@{/master/client(page=${i},size=${page.size})}">[[${i}+1]]</a>
+														</span>
+													</th:block>
+
+													<a
+														th:href="@{/master/client(page=${page.number+1},size=${page.size})}">
+														<button type="button"
+															class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+															th:if="${page.hasNext()}">
+															<i class="material-icons">skip_next</i>
+														</button>
+													</a>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<!-- -----------------------------------------------------*Pagination*---------------------------------------------------------------------------- -->
+							</div>
+						</div>	
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</section>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+	<!--  Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+	<!--      Bootstrap Datepicker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<!-- noUISlider Plugin Js -->
+	<script src="/plugins/nouislider/nouislider.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+	<!-- Custom Js -->
+	<script src="/js/admin.js"></script>
+	<script src="/js/pages/tables/jquery-datatable.js"></script>
+
+	<!--  Demo Js -->
+	<script src="/js/demo.js"></script>
+
+	<script>
+		function editUser(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var id = $(row).find('td[data-cid]').data('cid');
+			var name = $(row).find('td[data-cname]').data('cname');
+			var type = $(row).find('td[data-ctype]').data('ctype');
+			
+			var a = $('#editCode').val(id);
+			var b = $('#editName').val(name);
+			var c = $('#editType').val(type);
+			
+			$('#editClient').modal('show');
+			
+			$("#editType").change(function() {
+			    //var disabled = (this.value == "HOSPITAL" || this.value == "default");
+			    var disabled = (this.value == "CORPORATE" || this.value == "DOCTOR" || this.value == "INSURANCE" || this.value == "LAB");
+			    console.log(disabled);
+			    $("#percentage").prop("disabled", disabled);
+			}).change(); //to trigger on load
+			
+		}
+
+		function activeUser(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var id = $(row).find('td[data-cid]').data('cid');
+			var name = $(row).find('td[data-cname]').data('cname');
+
+			var a = $('#clientId').val(id);
+			var b = $('#clientName').val(name);
+			$('#active').modal('show');
+
+		}
+
+		function deactiveUser(ele) {
+			var row = $(ele).closest('tr');
+			var tds = $(row).find('td');
+
+			var id = $(row).find('td[data-cid]').data('cid');
+			var name = $(row).find('td[data-cname]').data('cname');
+
+			var a = $('#cid').val(id);
+			var b = $('#cname').val(name);
+			$('#deactive').modal('show');
+
+		}
+	</script>
+
+	<!--  <script>
+$(document).ready(
+		function() {
+		var date_input = $('input[name="fromDate"]'); //our date input has the name "date"
+		var container = $('.bootstrap-iso form').length > 0 ? $(
+		'.bootstrap-iso form').parent() : "body";
+		var options = {
+		format : 'dd-mm-yyyy',
+		container : container,
+		todayHighlight : true,
+		autoclose : true,
+		};
+		date_input.datepicker("setDate", "0");
+		})
+		</script>
+
+
+		<script>
+		$(document).ready(
+		function() {
+		var date_input = $('input[name="toDate"]'); //our date input has the name "date"
+		var container = $('.bootstrap-iso form').length > 0 ? $(
+		'.bootstrap-iso form').parent() : "body";
+		var options = {
+				format : 'dd-mm-yyyy',
+				container : container,
+				todayHighlight : true,
+				autoclose : true,
+				};
+				date_input.datepicker("setDate", "0");
+				})
+
+/* $(function () {
+	$("#date").datepicker({
+		dateFormat: "dd-mm-yy",
+		maxDate: new Date()
+	}).datepicker("setDate", "0");
+
+}); */
+
+</script> -->
+</body>
+</html>

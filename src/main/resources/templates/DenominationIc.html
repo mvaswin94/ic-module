@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<title>Anderson IC Module-Denomination Report</title>
+<div th:replace="fragments/head.html::head"></div>
+
+
+<body class="theme-red ls-closed">
+	<!-- Page Loader -->
+	<div th:replace="fragments/pageloader.html::pageloader"></div>
+	<!-- #END# Page Loader -->
+
+	<!-- Top Bar -->
+	<div th:replace="fragments/header.html::header"></div>
+	<!-- #Top Bar -->
+
+	<!-- Side Bar -->
+	<section class="content">
+		<div th:replace="fragments/sidenavbar.html::sidenavbar"></div>
+	</section>
+	<!-- #END# Right Sidebar -->
+
+	<!-- Advanced Select -->
+	<section class="content">
+		<div class="block-header">
+			<div th:replace="fragments/SearchIc.html::icsearch"></div>
+		</div>
+	</section>
+	<!-- #END# Advanced Select -->
+
+
+	<!-- Exportable Table -->
+	<section class="content">
+		<div class="block-header">
+			<div class="container-fluid">
+				<div class="row clearfix">
+
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 body-height">
+						<div class="cardtable">
+							<div class="header">
+								<h4>DENOMINATION IC REPORT</h4>
+
+							</div>
+							<div class="body">
+								<div class="table-responsive">
+									<div id="DataTables_Table_1_wrapper"
+										class="dataTables_wrapper form-inline dt-bootstrap">
+
+
+										<table
+											class="table table-bordered table-striped table-hover dataTable js-exportable"
+											id="DataTables_Table_1" role="grid"
+											aria-describedby="DataTables_Table_1_info">
+											<thead>
+												<tr role="row row2">
+													<th class="sorting_asc" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-sort="ascending"
+														aria-label="ClientId: activate to sort column descending">IC
+														No.</th>
+													<th class="sorting_asc" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-sort="ascending"
+														aria-label="ClientId: activate to sort column descending">Test
+														ID</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="ClientName: activate to sort column ascending">Test
+														Name</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="BillNo: activate to sort column ascending">Bill
+														No.</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="BillDate: activate to sort column ascending">Bill
+														Date</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="ClientId: activate to sort column ascending">Client
+														ID</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="ClientName: activate to sort column ascending">Client
+														Name</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="ClientType: activate to sort column ascending">Client
+														Type</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="AgencyName: activate to sort column ascending">Agency
+														Name</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="AgencyName: activate to sort column ascending">Pro
+														Id</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="AgencyName: activate to sort column ascending">Pro
+														Name</th>		
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="MaxAmount: activate to sort column ascending"
+														>Max. Amount</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="MinAmount: activate to sort column ascending"
+														>Min.Amount</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="DiscountAmount: activate to sort column ascending"
+														>Discount Amount</th>
+
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="IcAmount: activate to sort column ascending"
+														>IC Amount</th>
+
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="2000: activate to sort column ascending">2000
+													</th>
+													
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="500: activate to sort column ascending">500
+													</th>
+													
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="200: activate to sort column ascending">200
+													</th>
+													
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+														aria-label="100: activate to sort column ascending">100
+													</th>
+													
+												</tr>
+											</thead>
+
+											<tbody>
+
+												<tr role="row" th:each="ic : ${icObj}" class="odd">
+													<td class="sorting_1" th:text="${ic.icId}"></td>
+													<td class="sorting_1" th:text="${ic.test.testId}"></td>
+													<td class="sorting_1" th:text="${ic.test.testName}"></td>
+													<td class="sorting_1" th:text="${ic.bill.billNo}"></td>
+													<td class="sorting_1" th:text="${#dates.format(ic.bill.billDate, 'dd-MM-yyyy')}"></td>
+													<td class="sorting_1" th:text="${ic.bill.client.clientId}"></td>
+													<td class="sorting_1" th:text="${ic.bill.client.clientName}"></td>
+													<td class="sorting_1" th:text="${ic.bill.client.clientType}"></td>
+													<td class="sorting_1" th:text="${ic.bill.client.agencyName}"></td>
+													<td class="sorting_1" th:text="${ic.bill.client.pro.proId}"></td>
+													<td class="sorting_1" th:text="${ic.bill.client.pro.proName}"></td>
+													<td class="sorting_1" th:text="${ic.test.baseCost}"></td>
+													<td class="sorting_1" th:text="${ic.test.minCost}" ></td>
+													<td class="sorting_1" th:text="${ic.test.diffCost}"></td>
+													<td class="sorting_1" th:text="${ic.icAmount}"></td>
+													<td class="sorting_1" th:text="${ic.icAmount}"></td>
+													<td class="sorting_1" th:text="${ic.icAmount}"></td>	
+													<td class="sorting_1" th:text="${ic.icAmount}"></td>
+													<td class="sorting_1" th:text="${ic.icAmount}"></td>
+
+												</tr>
+
+											</tbody>
+										</table>										  
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- #END# Exportable Table -->
+
+	<!-- Js File Link -->
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+	<!--  Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+	<!--      Bootstrap Datepicker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<!-- noUISlider Plugin Js -->
+	<script src="/plugins/nouislider/nouislider.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+	<!-- Custom Js -->
+	<script src="/js/admin.js"></script>
+	<script src="/js/pages/tables/jquery-datatable.js"></script>
+
+	<!--  Demo Js -->
+	<script src="/js/demo.js"></script>
+
+	<!-- #END# Js File Link -->
+
+</body>
+</html>

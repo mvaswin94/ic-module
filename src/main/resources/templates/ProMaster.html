@@ -1,0 +1,164 @@
+<html xmlns:th="https://www.thymeleaf.org" style="overflow-x: hidden;" onload="proMaster">
+<div th:replace="fragment/Head.html::Head"></div>
+<body class="theme-red ls-closed">
+
+	<div class="overlay"></div>
+
+	<div th:replace="fragment/Header.html::Header"></div>
+
+	<section>
+
+		<div th:replace="fragment/Sidenav.html::SideNav"></div>
+		<section class="content">
+
+			<div th:replace="fragment/SearchPro.html::ProSearch"></div>
+
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card"style="bottom:2pc;">
+						<div class="header">
+							<h2>
+								<b>PRO Master</b>
+							</h2>
+
+
+
+						</div>
+						<div class="body">
+							<div class="table-responsive">
+								<table
+										class="table table-bordered table-striped table-hover dataTable">
+									<thead>
+										<tr>
+											<th>S.No</th>
+											<th>Id</th>
+											<th>Name</th>
+											<!-- <th>Client</th>	 -->
+										</tr>
+									</thead>
+									<tbody>
+
+										 <tr role="row" th:each="obj : ${page}" class="odd">
+											<td></td>											
+											<td class="sorting_1" th:text="${obj.proId}"></td>
+											<td class="sorting_1" th:text="${obj.proName}"></td>
+
+											<!-- <td><span> <a href="#pro" class="cover"
+													onclick="pro(this)"> <i class="material-icons"
+														data-toggle="tooltip" title="View Client List">info</i>
+												</a>
+											</span></td> -->
+
+										</tr> 
+
+									</tbody>
+								</table>
+								<!-- -----------------------------------------------------Pagination---------------------------------------------------------------------------- -->
+								<div class="col-sd-6">
+									<div class="box box-success box-solid">
+
+										<div class="box-body">
+											<div class="col-sd-6">
+
+												<div class="pagination-div">
+
+													<a
+														th:href="@{/master/pro(page=${page.number-1},size=${page.size})}">
+														<button type="button"
+															class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+															th:if="${page.hasPrevious()}">
+															<i class="material-icons" data-toggle="tooltip" title="Previous">skip_previous</i>
+														</button>
+													</a>
+													<th:block th:each="i: ${#numbers.sequence(0, page.number)}">
+														<span th:if="${page.number == i}" class="selected"  style="color:orange;font-weight:bold">[[${i}+1]]</span>
+														<span th:unless="${page.number == i}" class="selected" style="color:orange;font-weight:bold">
+															<a
+															th:href="@{/master/pro(page=${i},size=${page.size})}">[[${i}+1]]</a>
+														</span>
+													</th:block>
+
+													<a
+														th:href="@{/master/pro(page=${page.number+1},size=${page.size})}">
+														<button type="button"
+															class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+															th:if="${page.hasNext()}">
+															<i class="material-icons" data-toggle="tooltip" title="Next">skip_next</i>
+														</button>
+													</a>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<!-- -----------------------------------------------------*Pagination*---------------------------------------------------------------------------- -->
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+
+		</section>
+
+
+	</section>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+	<!--   Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+	<!--      Bootstrap Datepicker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+	<!-- noUISlider Plugin Js -->
+	<script src="/plugins/nouislider/nouislider.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+	<!--  Custom Js -->
+	<script src="/js/admin.js"></script>
+	<script src="/js/pages/tables/jquery-datatable.js"></script>
+
+	<!--  Demo Js -->
+	<script src="/js/demo.js"></script>
+
+	<style>
+.card .body {
+	font-size: 14px;
+	padding: 30px;
+}
+}
+</style>
+</body>
+</html>

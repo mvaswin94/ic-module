@@ -1,0 +1,83 @@
+.dataTable>tbody>tr>td {
+	font-size: 13px;
+}
+
+.theme-red .navbar {
+	background-color: #ffffff !important;
+}
+
+.input[type='checkbox']:after {
+	line-height: 1.5em;
+	content: '';
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin-top: -4px;
+	margin-left: -4px;
+	border: 1px solid rgb(192, 192, 192);
+	border-radius: 0.25em;
+	background: rgb(224, 224, 224);
+}
+
+.input[type='checkbox']:checked:after {
+	width: 15px;
+	height: 15px;
+	border: 3px solid #00ff00;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice
+	{
+	background-color: #e1e1e1;
+	border: 1px solid #ffffff;
+	border-radius: 4px;
+	cursor: default;
+	float: left;
+	margin-right: 5px;
+	margin-top: 5px;
+	padding: 0 5px;
+	color: black;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered
+	{
+	box-sizing: border-box;
+	list-style: none;
+	margin: 0;
+	padding: 0 5px;
+	width: 100%;
+	color:black;
+	display: inline-flex !important;
+}
+
+
+.modal-mdeium {
+	width: 60%;
+}
+
+.btn.btn-floating {
+	position: fixed;
+	bottom: 25px;
+	border-radius: 100px;
+}
+
+.btn-cancel {
+	right: 25px;
+}
+
+.floating {
+    position: fixed;
+    border-radius: 100px;
+    right: 34pc;
+    bottom: 0px;
+}
+
+.modal-header .close {
+	margin-top: -2px;
+	position: relative;
+	bottom: 20px;
+}
+
+.modal .modal-footer {
+	border: none;
+	position: relative;
+}

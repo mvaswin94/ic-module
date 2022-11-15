@@ -1,0 +1,238 @@
+
+<search th:fragment="UserSearch">
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="card filter-card"
+			style="background-color: #0367A6; bottom: 25px;">
+			<div class="body">
+				<div class="row clearfix">
+					<form method="POST" action="/master/user/search">
+						<div class="row" style="color: #f5f5f5;">
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+								<label>Name</label> <select class="form-control"
+									id="selectUser" name="name" multiple>
+									<option></option>
+
+								</select>
+								<script>
+								$('#selectUser').select2({ 
+						            ajax: {
+						                delay: 300,
+						                 url: function (params) {
+						                    var searchTerms = params.term;
+						                      var ajaxURlUserName = "/autocomplete/username/" + searchTerms + "/";
+						                    console.log(ajaxURlUserName);
+						                    return ajaxURlUserName;
+						                }, 
+						                dataType: 'json',
+						                
+						                data : function(params) {
+											return {
+												q : params.term, // search term
+												page : params.page,
+											};
+										},
+										processResults : function(data, page) {
+											var results = [];
+
+											$.each(data, function(index, item) {
+												results.push({
+													id : item.user_id,
+													text : item.user_name
+												});
+											});
+
+											return {
+												results : results
+											};
+
+											//console.log(results)
+
+										},
+						                cache: false
+						            },
+						            minimumInputLength: 1
+						        });
+								</script>
+							</div>
+
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+								<label>Contact Number<span class="text-danger"></span></label> <select
+									class="form-control" id="selectContactNumber" name="contactNumber"
+									multiple>
+									<option></option>
+
+								</select>
+								<script>
+								$('#selectContactNumber').select2({ 
+						            ajax: {
+						                delay: 300,
+						                 url: function (params) {
+						                    var searchTerms = params.term;
+						                      var ajaxURlContactNumber = "/autocomplete/contactnumber/" + searchTerms + "/";
+						                    console.log(ajaxURlContactNumber);
+						                    return ajaxURlContactNumber;
+						                }, 
+						                dataType: 'json',
+						                
+						                data : function(params) {
+											return {
+												q : params.term, // search term
+												page : params.page,
+											};
+										},
+										processResults : function(data, page) {
+											var results = [];
+
+											$.each(data, function(index, item) {
+												results.push({
+													id : item.contact_number,
+													text : item.contact_number
+												});
+											});
+
+											return {
+												results : results
+											};
+
+											//console.log(results)
+
+										},
+						                cache: false
+						            },
+						            minimumInputLength: 1
+						        });
+								</script>
+
+							</div>
+
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+								<label>Email Address<span class="text-danger"></span></label> <select
+									class="form-control" id="selectEmailAddress" name="email"
+									multiple>
+									<option></option>
+
+								</select>
+								<script>
+								$('#selectEmailAddress').select2({ 
+						            ajax: {
+						                delay: 300,
+						                 url: function (params) {
+						                    var searchTerms = params.term;
+						                      var ajaxURlEmailAddress = "/autocomplete/email/" + searchTerms + "/";
+						                    console.log(ajaxURlEmailAddress);
+						                    return ajaxURlEmailAddress;
+						                }, 
+						                dataType: 'json',
+						                
+						                data : function(params) {
+											return {
+												q : params.term, // search term
+												page : params.page,
+											};
+										},
+										processResults : function(data, page) {
+											var results = [];
+
+											$.each(data, function(index, item) {
+												results.push({
+													id : item.email_address,
+													text : item.email_address
+												});
+											});
+
+											return {
+												results : results
+											};
+
+											//console.log(results)
+
+										},
+						                cache: false
+						            },
+						            minimumInputLength: 1
+						        });
+								</script>
+
+							</div>
+
+
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+								<label>Role<span class="text-danger"></span></label> <select
+									class="form-control" id="selectRole" name="role" multiple>
+									<option></option>
+
+								</select>
+								<script>
+								$('#selectRole').select2({ 
+						            ajax: {
+						                delay: 300,
+						                 url: function (params) {
+						                    var searchTerms = params.term;
+						                      var ajaxURlRole = "/autocomplete/role/" + searchTerms + "/";
+						                    console.log(ajaxURlRole);
+						                    return ajaxURlRole;
+						                }, 
+						                dataType: 'json',
+						                
+						                data : function(params) {
+											return {
+												q : params.term, // search term
+												page : params.page,
+											};
+										},
+										processResults : function(data, page) {
+											var results = [];
+
+											$.each(data, function(index, item) {
+												results.push({
+													id : item.role,
+													text : item.role
+												});
+											});
+
+											return {
+												results : results
+											};
+
+											//console.log(results)
+
+										},
+						                cache: false
+						            },
+						            minimumInputLength: 1
+						        });
+								</script>
+
+							</div>
+
+							<!-- 						<div class="row">
+
+							<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2 ">
+
+								<a href="#">
+									<button class="btn bg-orange waves-effect pull-right" style="left:70pc;top:1pc;position:relative;border-radius: 4px;"><i class="material-icons">search</i><span>Search</span></button>
+								</a>
+							</div> -->
+
+							<div class="row">
+								<div class="col-sm-11">
+									<a href="#">
+										<button type="submit"
+											class="btn bg-orange waves-effect order pull-right "
+											style="border-radius: 4px; top: 2pc; left: 4pc;">
+											<i class="material-icons">search</i><span>Search</span>
+										</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</search>

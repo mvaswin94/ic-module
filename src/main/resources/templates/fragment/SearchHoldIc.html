@@ -1,0 +1,805 @@
+<search th:fragment="HoldIcSearch">
+
+<div class="row" id="prepare">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+		<div class="card"
+			style="background-color: #0367A6; bottom: 9px; height: 15pc;">
+<form method="POST" action="/ic/hold/search">
+			<div class="body" style="color: #f5f5f5;">
+				 
+				<div class="row clearfix">
+
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<label>PRO<span class="text-danger"></span></label>
+							<select class="form-control" id="selectPRO" name="pro" multiple>
+							<option value=""></option>
+							</select>
+						<script>
+						$('#selectPRO').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlPro = "/autocomplete/pro/" + searchTerms + "/";
+				                    console.log(ajaxURlPro);
+				                    return ajaxURlPro;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.pro_id,
+											text : item.pro_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<label>Client<span class="text-danger"></span></label>
+							<select class="form-control" id="selectClient" name="client" multiple>
+							<!-- <option value=""></option> -->
+							</select>
+						<script>
+							$('#selectClient').select2({ 
+					            ajax: {
+					                delay: 300,
+					                 url: function (params) {
+					                    var searchTerms = params.term;
+					                      var ajaxURlClient = "/autocomplete/client/" + searchTerms + "/";
+					                    console.log(ajaxURlClient);
+					                    return ajaxURlClient;
+					                }, 
+					                dataType: 'json',
+					                
+					                data : function(params) {
+										return {
+											q : params.term, // search term
+											page : params.page,
+										};
+									},
+									processResults : function(data, page) {
+										var results = [];
+
+										$.each(data, function(index, item) {
+											results.push({
+												id : item.client_id,
+												text : item.client_name
+											});
+										});
+
+										return {
+											results : results
+										};
+
+										//console.log(results)
+
+									},
+					                cache: false
+					            },
+					            minimumInputLength: 1
+					        });
+							
+						</script>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<label>Test<span class="text-danger"></span></label>
+							<select class="form-control" id="selectTest" name="test" multiple>
+							<option></option>
+							</select>
+						<script>
+						$('#selectTest').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlTest = "/autocomplete/investigation/" + searchTerms + "/";
+				                    console.log(ajaxURlTest);
+				                    return ajaxURlTest;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.investigation_id,
+											text : item.investigation_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+
+
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<label>Client Type<span class="text-danger"></span></label>
+							<select class="form-control" id="selectClientType" name="clientType" multiple>
+							<option></option>
+							</select>
+						<script>
+						$('#selectClientType').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlClientType = "/autocomplete/clienttype/" + searchTerms + "/";
+				                    console.log(ajaxURlClientType);
+				                    return ajaxURlClientType;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.client_type,
+											text : item.client_type
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+				</div>
+
+				<div class="row clearfix">
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<label>Department<span class="text-danger"></span></label>
+							<select class="form-control" id="selectDepartment" name="department" multiple>
+							<option></option>
+							</select>
+						<script>
+						$('#selectDepartment').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlTest = "/autocomplete/department/" + searchTerms + "/";
+				                    console.log(ajaxURlTest);
+				                    return ajaxURlTest;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.department_id,
+											text : item.department_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<label>Tenent<span class="text-danger"></span></label>
+							<select class="form-control" id="selectTenent" name="tenent" multiple	>
+							<option></option>
+							</select>
+						<script>
+						$('#selectTenent').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlTenent = "/autocomplete/tenent/" + searchTerms + "/";
+				                    console.log(ajaxURlTenent);
+				                    return ajaxURlTenent;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.tenent_id,
+											text : item.tenent_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+															<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+												<label>Visit Date</label> <br>
+												<div class="input-daterange input-group" name="deleveryDate"
+													data-provide="datepicker">
+													
+														<input type="text" class="form-control "
+															placeholder="From Date" id="fromDate" name="fromDate" style="width: 18pc;border-radius: 3px;
+														    bottom: 2px;height: 30px;font-weight: bolder;"autocomplete="off">
+													
+													 <span class="input-group-addon"></span>
+													
+														<input type="text" class="form-control"
+															placeholder="To Date" id="toDate" name="toDate" style="width: 18pc;border-radius: 3px;
+														    bottom: 2px;height: 30px;font-weight: bolder;left: 2pc;"autocomplete="off">
+													
+												</div>
+											</div>
+
+
+					</div>
+				<div class="row">
+					<div class="col-sm-11">
+
+						<a href="#" class="small-box-footer" data-toggle="modal"
+							data-target="#defaultModal"
+							style="color: orange; position: inherit; left: 61pc;"><b>Advanced
+							Search</b></a>
+							</div>
+
+						
+   
+											<div class="col-sm-11">
+												<a href="#">
+													<button class="btn bg-orange waves-effect order pull-right "style="border-radius: 4px;bottom: 3pc; left: 4pc;"><i class="material-icons">search</i><span>Search</span></button>
+												</a>
+											</div>
+										</div>
+
+
+			
+				</div>
+	</form>
+			</div>
+		
+			</div>
+		</div>
+
+
+
+
+
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" style="overflow:hidden;">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content"
+			style="width: 50pc; right: 5pc; ">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">Advanced Search</h4>
+			</div>
+			<form method="POST" action="/ic/hold/search">
+			<div class="modal-body">
+
+				<div class="row clearfix">
+					<div class="col-md-4">
+						<label>PRO<span class="text-danger"></span></label>
+							<select class="form-control" style="width:15pc" id="selectPRO1" name="pro" multiple>
+								<option value=""></option>
+								</select>
+						<script>
+						$('#selectPRO1').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlPro1 = "/autocomplete/pro/" + searchTerms + "/";
+				                    console.log(ajaxURlPro1);
+				                    return ajaxURlPro1;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.pro_id,
+											text : item.pro_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+
+
+					<div class="col-md-4">
+						<label>Client</label>
+							<select class="form-control"style="width:15pc" 
+								id="selectClient1" name="client" multiple>
+								<option value=""></option>
+
+							</select>
+
+						<script>
+						$('#selectClient1').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlClient = "/autocomplete/client/" + searchTerms + "/";
+				                    console.log(ajaxURlClient);
+				                    return ajaxURlClient;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.client_id,
+											text : item.client_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						
+						</script>
+
+					</div>
+
+					
+		<div class="col-md-4">
+						<label>Test<span class="text-danger"></span></label>
+							<select class="form-control" style="width: 15pc;"
+								id="selectTest1" name="test" multiple>
+								<option value=""></option>
+
+							</select>
+
+						<script>
+						$('#selectTest1').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlTest = "/autocomplete/investigation/" + searchTerms + "/";
+				                    console.log(ajaxURlTest);
+				                    return ajaxURlTest;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.investigation_id,
+											text : item.investigation_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+					
+</div>
+<div class="row clearfix">
+					<div class="col-md-4">
+						<label>Client Type<span class="text-danger"></span></label>
+							<select class="form-control" style="width: 15pc;"
+								id="selectClientType1" name="clientType" multiple>
+								<option value=""></option>
+
+							</select>
+
+						<script>
+						$('#selectClientType1').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlTest = "/autocomplete/clienttype/" + searchTerms + "/";
+				                    console.log(ajaxURlTest);
+				                    return ajaxURlTest;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.client_type,
+											text : item.client_type
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+				
+
+
+
+				
+
+					<div class="col-md-4">
+						<label>Department<span class="text-danger"></span></label>
+							<select class="form-control" style="width: 15pc;"
+								id="selectDepartment1" name="department" multiple>
+								<option value=""></option>
+
+							</select>
+
+						<script>
+						$('#selectDepartment1').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlTest = "/autocomplete/department/" + searchTerms + "/";
+				                    console.log(ajaxURlTest);
+				                    return ajaxURlTest;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.department_id,
+											text : item.department_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+
+
+
+
+					<div class="col-md-4">
+						<label>Tenent<span class="text-danger"></span></label>
+							<select class="form-control" style="width: 15pc;"
+								id="selectTenent1" name="tenent" multiple>
+								<option value=""></option>
+
+							</select>
+						<script>
+						$('#selectTenent1').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlTenent = "/autocomplete/tenent/" + searchTerms + "/";
+				                    console.log(ajaxURlTenent);
+				                    return ajaxURlTenent;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.tenent_id,
+											text : item.tenent_name
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+</div>
+<div class="row clearfix">
+					<div class="col-md-4">
+						<label>Cycle Days<span class="text-danger"></span></label>
+							<select class="form-control" style="width: 15pc;"
+								id="selectCycleDays2" name="cycleDays" multiple>
+								<option value=""></option>
+
+							</select>
+						<script>
+						$('#selectCycleDays2').select2({ 
+				            ajax: {
+				                delay: 300,
+				                 url: function (params) {
+				                    var searchTerms = params.term;
+				                      var ajaxURlCycleDays = "/autocomplete/cycledays/" + searchTerms + "/";
+				                    console.log(ajaxURlCycleDays);
+				                    return ajaxURlCycleDays;
+				                }, 
+				                dataType: 'json',
+				                
+				                data : function(params) {
+									return {
+										q : params.term, // search term
+										page : params.page,
+									};
+								},
+								processResults : function(data, page) {
+									var results = [];
+
+									$.each(data, function(index, item) {
+										results.push({
+											id : item.cycle_days,
+											text : item.cycle_days
+										});
+									});
+
+									return {
+										results : results
+									};
+
+									//console.log(results)
+
+								},
+				                cache: false
+				            },
+				            minimumInputLength: 1
+				        });
+						</script>
+
+					</div>
+					
+			<div class="col-sm-5" >
+												<label>Visit Date</label> <br>
+												<div class="input-daterange input-group" name="deleveryDate"
+													data-provide="datepicker">
+													<div class="form-line">
+														<input type="text" class="form-control" 
+															placeholder="From Date" id="fromDate"
+															autocomplete="off" name="fromDate">
+													</div>
+													<span class="input-group-addon">to</span>
+													<div class="form-line">
+														<input type="text" class="form-control"
+															placeholder="To Date" id="toDate"
+															autocomplete="off" name="toDate">
+													</div>
+												</div>
+											</div>
+
+
+
+				</div>
+
+
+				<div class="modal-footer" >
+					<button type="submit" class="btn btn-link waves-effect">SEARCH</button>
+					<button type="button" class="btn btn-link waves-effect"
+						data-dismiss="modal">CLOSE</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(
+		function() {
+		var date_input = $('input[id="fromDate"]'); //our date input has the name "date"
+		var container = $('.bootstrap-iso form').length > 0 ? $(
+		'.bootstrap-iso form').parent() : "body";
+		var options = {
+		format : 'dd-mm-yyyy',
+		container : container,
+		todayHighlight : true,
+		autoclose : true,
+		};
+		date_input.datepicker(options).datepicker("setDate", "0");
+		})
+		</script>
+
+
+		<script>
+		$(document).ready(
+		function() {
+		var date_input = $('input[id="toDate"]'); //our date input has the name "date"
+		var container = $('.bootstrap-iso form').length > 0 ? $(
+		'.bootstrap-iso form').parent() : "body";
+		var options = {
+				format : 'dd-mm-yyyy',
+				container : container,
+				todayHighlight : true,
+				autoclose : true,
+				
+				};
+				date_input.datepicker(options).datepicker("setDate", "0");
+		})
+
+
+</script>
+
+</search>
+
+
+
+

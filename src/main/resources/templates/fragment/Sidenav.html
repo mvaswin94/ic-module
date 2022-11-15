@@ -1,0 +1,63 @@
+
+
+<aside id="leftsidebar" class="sidebar" th:fragment="SideNav">
+
+	<div class="menu">
+		<ul class="list">
+		
+
+			<a href="javascript:void(0);" class="menu-toggle"> <i
+				class="material-icons">person_outline</i> <span>Master</span>
+			</a>
+			<ul class="ml-menu">
+				<li><a th:href="@{/master/pro}">Pro</a></li>
+				<li><a th:href="@{/master/client}">Client</a></li>
+				<li><a th:href="@{/master/user}">User</a></li>
+
+			</ul>
+
+			<a href="javascript:void(0);" class="menu-toggle"> <i
+				class="material-icons">attach_money</i> <span>IC</span>
+			</a>
+			<ul class="ml-menu">
+				<!--  <li>
+                                <a href=/budgetvsachived/company>Company</a>
+                            </li> -->
+				<li><a th:href="@{/ic/prepare}">Prepare</a></li>
+				<li><a th:href="@{/ic/allocate}">Allocate</a></li>
+				<li><a th:href="@{/ic/approve}">Approve</a></li>
+				<li><a th:href="@{/ic/dispatch}">Dispatch</a></li>
+				<li><a th:href="@{/ic/hold}">Hold IC</a></li>	
+				<li><a th:href="@{/ic/noneligibleic}">Non-Eligible IC</a></li>
+			</ul>
+
+				<a href="javascript:void(0);" class="menu-toggle"> <i
+				class="material-icons">assignment</i> <span>Report</span>
+			</a>
+			<ul class="ml-menu">
+				<li><a th:href="@{/report/eligibleic}">Eligible IC</a></li>
+						<li><a th:href="@{/report/noneligibleic}">Non-Eligible IC</a></li>
+						<li><a th:href="@{/report/noic}">No IC</a></li>
+						<li><a th:href="@{/report/unassignedpro}">Unassigned PRO</a></li> 
+						<li><a th:href="@{/report/icstages}">IC Stages</a></li>
+						<li><a th:href="@{/report/notprepared}">Not Prepared IC</a></li>
+					    <li><a th:href="@{/report/notallocated}">Not Allocated IC</a></li> 
+						<li><a th:href="@{/report/notapproved}">Not Approved IC</a></li>
+						<li><a th:href="@{/report/completed}">Delivered IC</a></li>
+						<!-- <li><a th:href="@{/report/denomination}">Denomination</a></li>
+						<li><a th:href="@{/report/tokenview}">Integration</a></li> -->
+
+			</ul>
+		</ul>
+	</div>
+
+	<div class="legal">
+		<div class="copyright">
+			&copy; 2019 <a href="javascript:void(0);">MUKESH INFOSERVE</a>.
+		</div>
+		<div class="version">
+			<b>Version: </b> 0.9
+		</div>
+	</div>
+
+</aside>

@@ -1,0 +1,360 @@
+<html xmlns:th="https://www.thymeleaf.org" style="overflow-x: hidden;">
+<div th:replace="fragment/Head.html::Head"></div>
+<body class="theme-red ls-closed">
+
+	<div class="overlay"></div>
+
+	<div th:replace="fragment/HeaderAl.html::Header"></div>
+
+	<section>
+
+		<div th:replace="fragment/Sidenav.html::SideNav"></div>
+
+		<section class="content">
+
+			<div th:replace="fragment/SearchAllocateIc.html::AllocateIcSearch"></div>
+
+
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card" style="bottom: 2pc;">
+						<div class="header">
+							<h2>
+								<b>ALLOCATE IC</b>
+							</h2>
+						</div>
+						<div class="body">
+							<div class="table-responsive">
+								<table id="example"
+									class="table table-bordered table-striped table-hover dataTable"
+									style="font-size: smaller; width: auto">
+									<thead>
+										<tr role="row">
+											<th>S.No</th>
+											<th class="sorting_asc" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-sort="ascending"
+												aria-label="Name: activate to sort column descending">IC
+												ID</th>
+											<th class="sorting_asc" tabindex="0"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-sort="ascending"
+												aria-label="Name: activate to sort column descending">CLIENT
+												ID</th>
+											<th class="sorting" tabindex="10"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												>PRO ID</th>
+											<th class="sorting" tabindex="11"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												>PRO NAME</th>
+											<th class="sorting_asc" tabindex="1"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-sort="ascending"
+												aria-label="Name: activate to sort column descending">CLIENT
+												NAME</th>
+											<th class="sorting_asc" tabindex="2"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-sort="ascending"
+												aria-label="Name: activate to sort column descending">BILL
+												NO</th>
+											<th class="sorting" tabindex="3"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">VISIT
+												DATE</th>
+											<th class="sorting" tabindex="3"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">TEST
+												NAME</th>
+											<th class="sorting" tabindex="4"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">BILL
+												AMOUNT</th>
+											<th class="sorting" tabindex="5"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">DISCOUNT
+												AMOUNT</th>
+											<th class="sorting" tabindex="6"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">NET
+												AMOUNT</th>
+											<th class="sorting" tabindex="7"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Salary: activate to sort column ascending">MIN.
+												AMOUNT</th>
+											<th class="sorting" tabindex="9"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending">IC
+												AMOUNT</th>
+
+											<!-- ----------------------------------------------HIDDEN---------------------------------------------------- -->
+
+											<th class="sorting" tabindex="10"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>TEST ID</th>
+											<!-- <th class="sorting" tabindex="10"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>TENENT ID</th>
+											<th class="sorting" tabindex="11"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>TENENT NAME</th>
+											<th class="sorting" tabindex="10"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>CLIENT TYPE</th>
+											<th class="sorting" tabindex="10"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>IC STATUS</th>
+											<th class="sorting" tabindex="11"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>DEPARTMENT ID</th>
+											<th class="sorting" tabindex="11"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>DEPARTMENT NAME</th> -->
+											<th class="sorting" tabindex="11"
+												aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+												aria-label="Position: activate to sort column ascending"
+												hidden>IB ID</th>
+
+											<!-- ----------------------------------------------*HIDDEN*---------------------------------------------------- -->
+
+											<th class=""><input type="checkbox" id="selectall"
+												onclick="app.ui.toggleCheckbox(this)" onchange="SelectedIcAmount()"
+												style="height: 1pc; width: 1pc;" ></th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr role="row" th:each="obj : ${page}" class="odd">
+											<td></td>
+											<td class="sorting_1" th:text="${obj.icId}" id="icId" th:attr="data-icId=${obj.icId}"></td>
+											<td class="sorting_1" th:text="${obj.clientId}" id="clientId"></td>
+											<td class="sorting_1" th:text="${obj.clientName}"
+												id="clientName"></td>
+											<td class="sorting_1" th:text="${obj.proId}" id="proId"></td>
+											<td class="sorting_1" th:text="${obj.proName}" id="proName"></td>
+											<td class="sorting_1" th:text="${obj.billNo}" id="billNo"></td>
+											<td class="sorting_1"
+												th:text="${#dates.format(obj.visitDate, 'dd-MM-yyyy')}"
+												id="visitDate"></td>
+											<td class="sorting_1" th:text="${obj.investigationName}"
+												id="investigationName"></td>
+											<td class="sorting_1" th:text="${obj.billAmount}"
+												id="billAmount"></td>
+											<td class="sorting_1" th:text="${obj.discountAmount}"
+												id="discountAmount"></td>
+											<td class="sorting_1" th:text="${obj.netAmount}"
+												th:attr="data-netAmount=${obj.netAmount}" id="netAmount"></td>
+											<td class="sorting_1" th:text="${obj.minCost}" 
+												 th:attr="data-minCost=${obj.minCost}" id="minCost"></td>
+
+											<td class="sorting_1"><input th:type="text"
+												th:value="${obj.preparedAmount.setScale(2, T(java.math.BigDecimal).ROUND_HALF_UP)}"
+												th:attr="data-icAmount=${obj.preparedAmount}"
+												id="preparedAmount" style="width: 50px;"></td>
+											<!-- ----------------------------------------------HIDDEN---------------------------------------------------- -->
+
+											<td class="sorting_1" th:text="${obj.investigationId}"
+												id="investigationId" hidden></td>
+											<!-- <td class="sorting_1" th:text="${obj.tenentId}" id="tenentId"
+												hidden></td>
+											<td class="sorting_1" th:text="${obj.tenentName}"
+												id="tenentName" hidden></td>
+											<td class="sorting_1" th:text="${obj.clientType}"
+												id="clientType" hidden></td>
+											<td class="sorting_1" th:text="${obj.icStatus}" id="icStatus"
+												hidden></td>
+											<td class="sorting_1" th:text="${obj.departmentId}"
+												id="departmentId" hidden></td>
+											<td class="sorting_1" th:text="${obj.departmentName}"
+												id="departmentName" hidden></td> -->
+											<td class="sorting_1" th:text="${obj.ibid}" id="ibid"
+												th:attr="data-ibId=${obj.ibid}" hidden></td>
+
+											<!-- ----------------------------------------------*HIDDEN*---------------------------------------------------- -->
+
+											<td class="sorting_1"><input type="checkbox" 
+											style="height: 1pc; width: 1pc;" onchange="SelectedIcAmount()"/></td>
+
+										</tr>
+
+									</tbody>
+								</table>
+							
+								<div class="floating" style="right: 56pc;">
+									<div class="card">
+										<div class="header">
+											<h2>
+												<label>NET Amount</label>
+												<br>
+												<label>Percentage</label> <input id="percentageRoundOff" type=text
+													value="0" onchange="roundOff()" maxlength="2"
+													style="width: 40px;" class="integerInput" />% 
+													<i class="material-icons" style="font-size: 20px;"
+													onclick="roundOffBack()" data-toggle="tooltip" title="Undo">settings_backup_restore</i>
+											</h2>
+										</div>
+									</div>
+								</div>
+
+								<div class="floating" style="right: 45pc;">
+									<div class="card">
+										<div class="header">
+											<h2>
+												<label>IC Round Off</label> 
+												<select
+													class="form-control show-tick" style="width: 100px;"
+													onchange="roundDown()" id="rDown">
+													<option value="">--Select--</option>
+													<option value="10">10</option>
+													<option value="50">50</option>
+													<option value="100">100</option>
+												</select>
+											</h2>
+										</div>
+									</div>
+									
+									<div class="floating" style="right: 30pc;">
+									<div class="card">
+										<div class="header">
+											<h2>
+												<label>Selected IC Amount</label>
+												<br>
+												<input id="sumSelectedIcAmount" type=text value="0"
+												style="width: 100px;" class="integerInput" />
+											</h2>
+										</div>
+									</div>
+
+								</div> 
+
+								</div>
+								<button value="HoldAllocate" onclick="HoldAllocate()"
+									class="btn btn-floating btn bg-orange waves-effect btn-cancel"
+									style="right: 24pc" data-toggle="tooltip" title="Hold">
+									<i class="material-icons">pan_tool</i> <span>Hold</span>
+								</button>
+								
+								<button value="AllocateToPrepare" onclick="AllocateToPrepare()"
+									class="btn btn-floating btn bg-blue waves-effect btn-cancel"
+									style="right: 15pc" data-toggle="tooltip" title="Not Allocate">
+									<i class="material-icons">arrow_back</i><span>Not
+										Allocate</span>
+								</button>
+
+								<button value="CancelAllocate" onclick="CancelAllocate()"
+									class="btn btn-floating btn bg-red waves-effect btn-cancel"
+									style="right: 8pc" data-toggle="tooltip" title="Cancel">
+									<i class="material-icons">clear</i><span>Cancel</span>
+								</button>
+
+								<button value="Allocate" onclick="Allocate()"
+									class="btn btn-floating btn bg-green waves-effect"
+									style="right: 1pc" data-toggle="tooltip" title="Allocate">
+									<i class="material-icons">arrow_forward</i><span>Allocate</span>
+								</button>
+							</div>
+							<!-- -----------------------------------------------------Pagination---------------------------------------------------------------------------- -->
+							<div class="col-sd-6">
+								<div class="box box-success box-solid">
+
+									<div class="box-body">
+										<div class="col-sd-6">
+
+											<div class="pagination-div">
+
+												<a
+													th:href="@{/ic/allocate(page=${page.number-1},size=${page.size})}">
+													<button type="button"
+														class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+														th:if="${page.hasPrevious()}">
+														<i class="material-icons" data-toggle="tooltip"
+															title="Previous">skip_previous</i>
+													</button>
+												</a>
+												<th:block th:each="i: ${#numbers.sequence(0, page.number)}">
+													<span th:if="${page.number == i}" class="selected"
+														style="color: orange; font-weight: bold">[[${i}+1]]</span>
+													<span th:unless="${page.number == i}" class="selected"
+														style="color: orange; font-weight: bold"> <a
+														th:href="@{/ic/allocate(page=${i},size=${page.size})}">[[${i}+1]]</a>
+													</span>
+												</th:block>
+
+												<a
+													th:href="@{/ic/allocate(page=${page.number+1},size=${page.size})}">
+													<button type="button"
+														class="btn btn-warning btn-circle waves-effect waves-circle waves-float"
+														th:if="${page.hasNext()}">
+														<i class="material-icons" data-toggle="tooltip"
+															title="Next">skip_next</i>
+													</button>
+												</a>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- -----------------------------------------------------*Pagination*---------------------------------------------------------------------------- -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+	<!--  Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+	<!--      Bootstrap Datepicker Plugin Js -->
+	<script
+		src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+	<!-- noUISlider Plugin Js -->
+	<script src="/plugins/nouislider/nouislider.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+
+	<!-- Custom Js -->
+	<script src="/js/admin.js"></script>
+	<script src="/js/pages/tables/jquery-datatable.js"></script>
+
+	<!--  Demo Js -->
+	<script src="/js/demo.js"></script>
+
+</body>
+</html>
